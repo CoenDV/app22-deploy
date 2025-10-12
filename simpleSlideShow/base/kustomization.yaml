@@ -5,3 +5,4 @@ resources:
   - deployment-fotoshow.yaml
   - route-fotoshow.yaml
   - service-fotoshow.yaml
+  - pvc-fotoshow.yaml
