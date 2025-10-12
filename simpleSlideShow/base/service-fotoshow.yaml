@@ -1,0 +1,37 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: fotoshow
+  namespace: sam-sam-showcase
+  labels:
+    app: fotoshow
+    app.kubernetes.io/component: fotoshow
+    app.kubernetes.io/instance: fotoshow
+    app.kubernetes.io/name: fotoshow
+  annotations:
+spec:
+  clusterIP: 172.31.236.72
+  ipFamilies:
+    - IPv4
+  ports:
+    - name: 18181-tcp
+      protocol: TCP
+      port: 18181
+      targetPort: 18181
+    - name: 8080-tcp
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+    - name: 8443-tcp
+      protocol: TCP
+      port: 8443
+      targetPort: 8443
+  internalTrafficPolicy: Cluster
+  clusterIPs:
+    - 172.31.236.72
+  type: ClusterIP
+  ipFamilyPolicy: SingleStack
+  sessionAffinity: None
+  selector:
+    app: fotoshow
+    deployment: fotoshow
