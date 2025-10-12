@@ -18,7 +18,14 @@ spec:
           ports:
             - containerPort: 18181
               protocol: TCP
-            - containerPort: 8080
-              protocol: TCP
-            - containerPort: 8443
-              protocol: TCP
+          env:
+            - name: SLIDESHOW_EXTERNAL_DIR
+              value: /data
+
+          volumeMounts:
+            - name: foto-data-volume
+              mountPath: /data
+      volumes:
+        - name: foto-data-volume
+          persistentVolumeClaim:
+            claimName: pvc-foto-show
