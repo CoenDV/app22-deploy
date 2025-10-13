@@ -3,7 +3,7 @@ apiVersion: apps/v1
 metadata:
   name: fotoshow
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: fotoshow
@@ -14,18 +14,10 @@ spec:
     spec:
       containers:
         - name: fotoshow
-          image: 'image-registry.openshift-image-registry.svc:5000/sam-sam-showcase/fotoshow@sha256:3353cb84e8a956a5c53f88da2e45153d465b4b7115ff28e80a4c4c4053305c89'
+          image: 'image-registry.openshift-image-registry.svc:5000/projectgroup1-coen/fotoshow@sha256:cf1a50d1298d7b028c917b3de280e0cdf123748b0c40e25c853d0d7ee69fb54e'
           ports:
             - containerPort: 18181
               protocol: TCP
           env:
             - name: SLIDESHOW_EXTERNAL_DIR
               value: /data
-
-          volumeMounts:
-            - name: foto-data-volume
-              mountPath: /data
-      volumes:
-        - name: foto-data-volume
-          persistentVolumeClaim:
-            claimName: pvc-foto-show

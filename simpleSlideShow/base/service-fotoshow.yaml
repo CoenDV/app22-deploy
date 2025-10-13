@@ -2,7 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: fotoshow
-  namespace: sam-sam-showcase
+  namespace: projectgroup1-coen
   labels:
     app: fotoshow
     app.kubernetes.io/component: fotoshow
