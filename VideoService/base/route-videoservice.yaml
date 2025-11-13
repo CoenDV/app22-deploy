@@ -1,0 +1,23 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: videoservice
+  namespace: projectgroup1-coen
+  labels:
+    app: videoservice
+    app.kubernetes.io/component: videoservice
+    app.kubernetes.io/instance: videoservice
+    app.kubernetes.io/name: videoservice
+  annotations:
+spec:
+  host: videoservice-projectgroup1-coen.apps.inholland-minor.openshift.eu
+  to:
+    kind: Service
+    name: videoservice
+    weight: 100
+  port:
+    targetPort: 8080-tcp
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None

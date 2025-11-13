@@ -1,0 +1,20 @@
+﻿kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: videoservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: videoservice
+  template:
+    metadata:
+      labels:
+        app: videoservice
+    spec:
+      containers:
+        - name: videoservice
+          image: "ghcr.io/inholland-cloud-minor-2526/group1-videoservice:dev-89fd7f7"
+          ports:
+            - containerPort: 8080
+              protocol: TCP

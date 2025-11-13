@@ -1,0 +1,19 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: videoservice
+  namespace: projectgroup1-coen
+  labels:
+    app: videoservice
+    app.kubernetes.io/component: videoservice
+    app.kubernetes.io/instance: videoservice
+    app.kubernetes.io/name: videoservice
+spec:
+  ports:
+    - name: 8080-tcp
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP
+  selector:
+    app: videoservice
