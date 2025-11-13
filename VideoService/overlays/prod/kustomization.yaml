@@ -5,3 +5,7 @@ namespace: projectgroup1-prod
 
 resources:
   - ../../base
+
+images:
+  - name: ghcr.io/inholland-cloud-minor-2526/group1-videoservice
+    newTag: main
