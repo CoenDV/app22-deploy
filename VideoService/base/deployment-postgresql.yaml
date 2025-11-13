@@ -25,9 +25,19 @@ spec:
               value: postgres
             - name: POSTGRES_PASSWORD
               value: postgres
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
           volumeMounts:
             - name: postgresql-data
               mountPath: /var/lib/postgresql/data
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop:
+                - ALL
+            seccompProfile:
+              type: RuntimeDefault
       volumes:
         - name: postgresql-data
           persistentVolumeClaim:
