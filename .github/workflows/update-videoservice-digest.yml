@@ -1,0 +1,62 @@
+name: Update Deployment Manifest
+
+on:
+    workflow_run:
+        workflows: ["Docker Build and Push"] # Replace with your actual workflow name
+        types:
+            - completed
+        branches:
+            - main
+
+jobs:
+    update-manifest:
+        runs-on: ubuntu-latest
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+        steps:
+            - name: Checkout deployment repo
+              uses: actions/checkout@v4
+              with:
+                  repository: CoenDV/simpleSlideshow-deploy
+                  token: ${{ secrets.DEPLOY_REPO_TOKEN }} # Personal Access Token with repo access
+                  path: deploy-repo
+
+            - name: Get image digest
+              id: digest
+              run: |
+                  # Login to GHCR
+                  echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+                  # Pull the image and get digest
+                  docker pull ghcr.io/inholland-cloud-minor-2526/group1-videoservice:main
+                  DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/inholland-cloud-minor-2526/group1-videoservice:main | cut -d'@' -f2)
+                  echo "digest=${DIGEST}" >> $GITHUB_OUTPUT
+                  echo "Image digest: ${DIGEST}"
+
+            - name: Update kustomization with digest
+              working-directory: deploy-repo/VideoService/overlays/prod
+              run: |
+                  cat > kustomization.yaml << EOF
+                  apiVersion: kustomize.config.k8s.io/v1beta1
+                  kind: Kustomization
+
+                  namespace: projectgroup1-prod
+
+                  resources:
+                    - ../../base
+
+                  images:
+                    - name: ghcr.io/inholland-cloud-minor-2526/group1-videoservice
+                      digest: ${{ steps.digest.outputs.digest }}
+                  EOF
+
+                  cat kustomization.yaml
+
+            - name: Commit and push changes
+              working-directory: deploy-repo
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "github-actions[bot]@users.noreply.github.com"
+                  git add VideoService/overlays/prod/kustomization.yaml
+                  git commit -m "Update VideoService prod image digest to ${{ steps.digest.outputs.digest }}" || exit 0
+                  git push
