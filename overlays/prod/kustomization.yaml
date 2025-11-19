@@ -4,18 +4,19 @@ kind: Kustomization
 namespace: projectgroup1-prod
 
 resources:
-  - ../../base
+- ../../base
 
 images:
-  - name: ghcr.io/inholland-cloud-minor-2526/group1-chatservice
-    newTag: main
-  - name: ghcr.io/inholland-cloud-minor-2526/group1-communityservice
-    newTag: main
-  - name: ghcr.io/inholland-cloud-minor-2526/group1-notificationservice
-    newTag: main
-  - name: ghcr.io/inholland-cloud-minor-2526/group1-recommendationservice
-    newTag: main
-  - name: ghcr.io/inholland-cloud-minor-2526/group1-userservice
-    newTag: main
-  - name: ghcr.io/inholland-cloud-minor-2526/group1-videoservice
-    newTag: main
+- name: ghcr.io/inholland-cloud-minor-2526/group1-chatservice
+  newTag: main
+- name: ghcr.io/inholland-cloud-minor-2526/group1-communityservice
+  newTag: main
+- name: ghcr.io/inholland-cloud-minor-2526/group1-notificationservice
+  newTag: main
+- name: ghcr.io/inholland-cloud-minor-2526/group1-recommendationservice
+  newTag: main
+- name: ghcr.io/inholland-cloud-minor-2526/group1-userservice
+  newTag: main
+- digest: sha256:43a264cf1469e5180a616d5da2ea55ada864d579e265b3a842fc9a800081180d
+  name: ghcr.io/inholland-cloud-minor-2526/group1-videoservice
+  newName: ghcr.io/inholland-cloud-minor-2526/group1-videoservice
