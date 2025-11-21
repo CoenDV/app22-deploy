@@ -4,22 +4,18 @@ kind: Kustomization
 namespace: projectgroup1-prod
 
 resources:
-- ../../base
+  - ../../base
 
 images:
-- name: ghcr.io/coendv/group1-chatservice
-  newTag: main
-- name: ghcr.io/coendv/group1-communityservice
-  newTag: main
-- name: ghcr.io/coendv/group1-notificationservice
-  newTag: main
-- name: ghcr.io/coendv/group1-recommendationservice
-  newTag: main
-- digest: sha256:e6dc928ff484cf350675f345356bfeae733a8e99a766f4eec77f8f56b630387c
-  name: ghcr.io/coendv/group1-userservice
-  newName: ghcr.io/coendv/group1-userservice
-- name: ghcr.io/coendv/group1-videoservice
-  newTag: main
-- digest: sha256:43a264cf1469e5180a616d5da2ea55ada864d579e265b3a842fc9a800081180d
-  name: ghcr.io/inholland-cloud-minor-2526/group1-videoservice
-  newName: ghcr.io/inholland-cloud-minor-2526/group1-videoservice
+  - name: ghcr.io/coendv/group1-chatservice
+    newTag: main
+  - name: ghcr.io/coendv/group1-communityservice
+    newTag: main
+  - name: ghcr.io/coendv/group1-notificationservice
+    newTag: main
+  - name: ghcr.io/coendv/group1-recommendationservice
+    newTag: main
+  - name: ghcr.io/coendv/group1-userservice
+    newTag: main
+  - name: ghcr.io/coendv/group1-videoservice
+    newTag: main
