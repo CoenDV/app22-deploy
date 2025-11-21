@@ -27,6 +27,8 @@ spec:
               value: postgres
             - name: PGDATA
               value: /var/lib/postgresql/data/pgdata
+            - name: PGPORT
+              value: "5435"
           volumeMounts:
             - name: postgresql-data
               mountPath: /var/lib/postgresql/data
