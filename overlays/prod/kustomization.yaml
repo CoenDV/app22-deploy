@@ -12,7 +12,7 @@ images:
   newName: ghcr.io/coendv/group1-chatservice
 - name: ghcr.io/coendv/group1-communityservice
   newTag: main
-- digest: sha256:2d956b2af7fd2e5c4ce21990913a30e1fd5c454d3479983c386f92a9331db03a
+- digest: sha256:f60e3a62d1a49fa5c2352603d13e635162082325b443f8e5445fe1e9b96ffc06
   name: ghcr.io/coendv/group1-notificationservice
   newName: ghcr.io/coendv/group1-notificationservice
 - name: ghcr.io/coendv/group1-recommendationservice
