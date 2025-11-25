@@ -16,7 +16,7 @@ spec:
         - name: ngrok
           image: ngrok/ngrok:latest
           ports:
-            - containerPort: 4040
+            - containerPort: 8090
               protocol: TCP
           command:
             - ngrok
