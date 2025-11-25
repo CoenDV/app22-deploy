@@ -24,7 +24,7 @@ spec:
             - "--log=stdout"
             - "--log-level=info"
             - "--domain=$(NGROK_DOMAIN)"
-            - "videoservice-service:8085"
+            - "videoservice-videoservice:8085"
           env:
             - name: NGROK_AUTHTOKEN
               valueFrom:
