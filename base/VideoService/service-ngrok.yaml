@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ngrok
+spec:
+  selector:
+    app: ngrok
+  ports:
+    - name: ngrok-ui
+      protocol: TCP
+      port: 4040
+      targetPort: 4040

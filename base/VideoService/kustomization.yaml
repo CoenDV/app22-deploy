@@ -11,6 +11,9 @@ resources:
   - deployment-postgresql.yaml
   - service-postgresql.yaml
   - pvc-postgresql.yaml
+  - deployment-ngrok.yaml
+  - service-ngrok.yaml
+  - route-ngrok.yaml
 
 configurations:
   - kustomizeconfig.yaml
