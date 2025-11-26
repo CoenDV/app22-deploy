@@ -6,7 +6,7 @@ namePrefix: notificationservice-
 
 commonLabels:
   app.kubernetes.io/name: notificationservice
-  app.kubernetes.io/part-of: slideshare-platform
+  app.kubernetes.io/part-of: notification-app
   app.kubernetes.io/component: backend
 
 resources:

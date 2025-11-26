@@ -6,7 +6,7 @@ namePrefix: userservice-
 
 commonLabels:
   app.kubernetes.io/name: userservice
-  app.kubernetes.io/part-of: slideshare-platform
+  app.kubernetes.io/part-of: user-app
   app.kubernetes.io/component: backend
 
 resources:
