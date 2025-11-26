@@ -31,3 +31,9 @@ spec:
               value: postgres
             - name: DATABASE_URL
               value: postgresql://postgres:postgres@communityservice-postgresql:5433/communityservice
+            - name: KEYCLOAK_URL
+              value: http://userservice-keycloak:8080
+            - name: KEYCLOAK_REALM
+              value: simpleslideshow
+            - name: KEYCLOAK_CLIENT_ID
+              value: simpleslideshow-client
