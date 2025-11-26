@@ -22,9 +22,9 @@ spec:
             - name: POSTGRES_DB
               value: userservice
             - name: POSTGRES_USER
-              value: postgres
+              value: admin
             - name: POSTGRES_PASSWORD
-              value: postgres
+              value: admin
             - name: PGDATA
               value: /var/lib/postgresql/data/pgdata
             - name: PGPORT
