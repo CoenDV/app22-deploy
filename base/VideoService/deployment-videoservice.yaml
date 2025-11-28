@@ -46,21 +46,41 @@ spec:
             - name: DB_NAME
               value: videoservice
             - name: DB_USER
-              value: postgres
+              valueFrom:
+                secretKeyRef:
+                  name: videoservice-secrets
+                  key: DB_USER
             - name: DB_PASSWORD
-              value: postgres
+              valueFrom:
+                secretKeyRef:
+                  name: videoservice-secrets
+                  key: DB_PASSWORD
             - name: DATABASE_URL
-              value: postgresql://postgres:postgres@videoservice-postgresql:5435/videoservice
-            # ToDo: Replace with secrets management
-            - name: MUX_TOKEN_ID
-              value: "cf7166ce-9017-4f6f-a62c-a794665ccb66"
-            - name: MUX_TOKEN_SECRET
-              value: "hkv45o8kuUwaAUE0Yxm6wZk8H/3jHCw8d1xDPqzAetlA+i1pnK9V+EiQB4mgODR96kAXZVciUhZ"
-            - name: MUX_WEBHOOK_SECRET
-              value: "e84qshv104n9bhv2bju08ks5pqapdmf4"
+              value: postgresql://$(DB_USER):$(DB_PASSWORD)@videoservice-postgresql:5435/videoservice
             - name: MUX_STREAM_HOST
               value: "stream.mux.com"
+            - name: MUX_TOKEN_ID
+              valueFrom:
+                secretKeyRef:
+                  name: videoservice-secrets
+                  key: MUX_TOKEN_ID
+            - name: MUX_TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: videoservice-secrets
+                  key: MUX_TOKEN_SECRET
+            - name: MUX_WEBHOOK_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: videoservice-secrets
+                  key: MUX_WEBHOOK_SECRET
             - name: MUX_SIGNING_KEY_ID
-              value: "6OLwzl02Sx9PRH16gMKajqAnc64MPf8vbz2J3n5Frf02E"
+              valueFrom:
+                secretKeyRef:
+                  name: videoservice-secrets
+                  key: MUX_SIGNING_KEY_ID
             - name: MUX_SIGNING_KEY_PRIVATE_KEY
-              value: "LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFcEFJQkFBS0NBUUVBc3Q1SjFwZjBEQVAyMlIvTzJBQU9JcjdmL3UyYXJrRTIzQ0V1RzVqV2Nvc3NoYjRICmFNTXRrM2hxemE2eEtqdTR1clNpcGp6aStuZ0NWVXhiQWdBUGIwU1l5YUNPekRsV3BFYmhmOE5GZDZIRzFuNm4KZkdSaWtuVVhVMkZFUmwrME1nOUxKTXJjMVA0dFFJZng5VjRqdVR2bVF6dzRaRGZvRGdNQVNGRDVIVWNsSUJPWQoxMWl6UzVOYS93M2FKamtzYk02ZUtZVjkyU3I3ZVV2d2xKZEVWU09uUG1BaXYzaGxxb3MrVXo3YnFiVzk0T3JKCnlRRnE1LysvdWNtQmRmNjNpcDgvZm42eStxU0k2QlBPZW1RVmtGaDBId3VaT3dhQzNlQmdOZkdjcG1KT1lJSkcKME5sSHh6NGdMWDJQRmNlbllZTnRVMUR3NzRqYlFSb2lIUFhEalFJREFRQUJBb0lCQUJ4N044K3pUM2x3VWlpZApuMzZXZDZuQnNnSXlUR3lOMXRIemVKZU5YU3hOQy9CWjQyMGprd2pGNWwvTS9zbm1TNUp6TytqempnTHJCQmdYCitlL1dHWjhTa2ErZFlNK1ZHNzQ1eVNOaWNSZk5DMC9SU0JNUEd3RU9Jd0kwWFQ1RmMvaDZwZkQ4V25DUjdwdTEKYWVvenJNV01pNnhPRlA2a1JrK2cyN1VvSzVxbEd0YkU3R0NmNmMzWFVuR1dGUUlEU0ljYTNnT2h5OGdBay81egpmQ0F4dHhMMmMwZEV6czVtRk9IMjZTWEhVMm9KNlgzbmZLNEtjcnkweVlGRUtkZ2xVZlpvT1VVcy8wbFE5T1FLCnJMblJ6YzA2dmpXZU5wQTIrSWMyZVh6K1ZURWRkbHc3aUYvRzZjZ1RmSm5YS1FMc2pVZEVOejA1R2JtaWovRU0KUzAra1F6TUNnWUVBMXhRTmU5NlZvVGt3M1l5UDlFQzByOEM2QkJaMjNVaG9oLzdsWDVpTEc5WkY1VFphMkNKMwpPZENRV2hIRm45YWNQdkQrU2lCdGFmTSs0MGdrZ2xCWXlUQ2I1VjZVV2JuTEY3TG52NUpVck9TNGpQVnJQNWpvCmxHL3ZIL1pJUjFPVk5QdUtqL2liUXhSL2RjSEFuV3BURVJPNTZmenFHRTNyeVkxUVdURjhIaGNDZ1lFQTFPYUkKZUlLbzFmTmw3Z05RVU9CeDBVS1NpMTRrRWVzOFdWT2cvN1FwVWRvQUxxUExaUm8zZzZZc25WRmU2QkNMR2VWVwp4SWZKMkFpVEIrTmVmWERQSVJvZHFHdDlxWUE3c3RxOERXd21iY2pROFhna1RTa2paVjNjb0krS2Q4cXIyTjhUCmw0S2JoUEFLOUd5LzdhSFpoNmFSUEwvTEsyNmVFclNVYUUyeXRmc0NnWUVBZ1RvU00vZjBMWStnVmEyTUhQVDMKMjVYUDduN1U0bllNSUpJOW5TZVpoWnRFR2NtRDRkTXJrYmhIMDJaVU9JcUpES1JlRlluUVU5V01WcUZWRmx0UwpUV2dBYzF0VmhXZkZxREtkWGhSOC9mamJEZzZ6WnQzbitMQWNuRGF0RFBZaWMxZ2oxQWRLdW81Sld5YVVKY0RwCnNod0pHNWNUekpDYytGZ0pDOTVZdGZjQ2dZRUF4M1lVZFpNMFN2NTJpTDlpQitPL3ZxWDRWY29sVVFScXplV2oKK096NXFVM3N6Y1YzVVlsMmFVak9rN1VnalpxeU45aTlxZkx1RUJBNGNETjgyMWxOTlY0YVd5Z1oyeXZnd25oYgpwdGVrU1ViVE91ZXNXdjRudzFoazA2aW51Z09QYk9mU215Z3FQQ29JbVdjcGlhRVJCQjN5QkZCTU1LeTZQQndpCnpuVzg4UEVDZ1lCM1FBaDIyQUVtMFBSZ1A5dUFhRHFhcWpMQlNkckxnK1diN3JCZVplaGRjZlc2ZDRCMTBtWGYKWVpaRlJ0K3htU1A3R0FvV3JvRjg3eXgxOW5oNFNNYm9IQWVHNWZWS00wYlphOG14czJzZnduSlZiNU9xQ0doZQpIdXE5NktCd0pmQTQ5Qmw0RFFoR1dhc0EyWGRIdnFtR0ppT1c4ZHllMlFoekt1Q1B6TThIaXc9PQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQo="
+              valueFrom:
+                secretKeyRef:
+                  name: videoservice-secrets
+                  key: MUX_SIGNING_KEY_PRIVATE_KEY
