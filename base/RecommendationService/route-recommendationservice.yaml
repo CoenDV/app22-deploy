@@ -8,3 +8,6 @@ spec:
     name: recommendationservice
   port:
     targetPort: 8084
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
