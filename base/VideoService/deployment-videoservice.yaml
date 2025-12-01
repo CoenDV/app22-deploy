@@ -104,6 +104,11 @@ spec:
                 secretKeyRef:
                   name: videoservice-secrets
                   key: KEYCLOAK_AUDIENCE
+            - name: KEYCLOAK_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: videoservice-secrets
+                  key: KEYCLOAK_CLIENT_SECRET
             - name: RECOMMENDATION_SERVICE_URL
               valueFrom:
                 secretKeyRef:
