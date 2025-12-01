@@ -28,6 +28,6 @@ images:
 - digest: sha256:df68691a144729206ccb7197afe28c2788ff7d7b752fa04eedc3f7671c8764e7
   name: ghcr.io/coendv/group1-userservice
   newName: ghcr.io/coendv/group1-userservice
-- digest: sha256:6e7e8fa0072c29acc6471f98c9b3c5f35057c542dfd3a7d732c227c29a245225
+- digest: sha256:f9648e8e068c4d46bb9e17425d4ad47775825e8fa8c53827ba710c0c4e50af86
   name: ghcr.io/coendv/group1-videoservice
   newName: ghcr.io/coendv/group1-videoservice
