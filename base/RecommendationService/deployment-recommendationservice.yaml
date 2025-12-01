@@ -33,3 +33,5 @@ spec:
               value: postgresql://postgres:postgres@recommendationservice-postgresql:5434/recommendationservice
             - name: PORT
               value: "8084"
+            - name: COMMUNITY_SERVICE_URL
+              value: https://communityservice-communityservice-projectgroup1-prod.apps.inholland-minor.openshift.eu
