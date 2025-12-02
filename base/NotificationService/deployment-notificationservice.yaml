@@ -66,3 +66,21 @@ spec:
                 secretKeyRef:
                   name: notificationservice-secrets
                   key: USE_DUMMY_USER
+
+            - name: KEYCLOAK_URL
+              valueFrom:
+                secretKeyRef:
+                  name: notificationservice-secrets
+                  key: KEYCLOAK_URL
+
+            - name: KEYCLOAK_REALM
+              valueFrom:
+                secretKeyRef:
+                  name: notificationservice-secrets
+                  key: KEYCLOAK_REALM
+
+            - name: KEYCLOAK_AUDIENCE
+              valueFrom:
+                secretKeyRef:
+                  name: notificationservice-secrets
+                  key: KEYCLOAK_AUDIENCE
