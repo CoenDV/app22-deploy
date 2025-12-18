@@ -96,11 +96,21 @@ spec:
                   name: userservice-secrets
                   key: KEYCLOAK_ADMIN_PASS
 
-            - name: SERVICE_TOKEN
+            - name: USER_SERVICE_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: userservice-secrets
-                  key: SERVICE_TOKEN
+                  key: USER_SERVICE_TOKEN
+            - name: NOTIFICATION_SERVICE_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: userservice-secrets
+                  key: NOTIFICATION_SERVICE_TOKEN
+            - name: SENDER_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: userservice-secrets
+                  key: SENDER_EMAIL
           resources:
             requests:
               cpu: 200m
