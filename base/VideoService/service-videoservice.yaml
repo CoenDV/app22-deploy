@@ -12,7 +12,14 @@ spec:
   selector:
     app: videoservice
   ports:
-    - name: 8085-tcp
-      protocol: TCP
-      port: 8085
-      targetPort: 8085
+  - name: http
+    protocol: TCP
+    port: 8085
+    targetPort: 8085
+
+  - name: metrics
+    protocol: TCP
+    port: 9090
+    targetPort: 9090
+
+
