@@ -17,7 +17,7 @@ spec:
           ports:
             - containerPort: 8081
               protocol: TCP
-              - containerPort: 9090
+            - containerPort: 9090
               protocol: TCP
           env:
             - name: DB_HOST
