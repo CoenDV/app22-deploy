@@ -26,7 +26,7 @@ spec:
               scheme: HTTP
             initialDelaySeconds: 30
             timeoutSeconds: 5
-            periodSeconds: 10
+            periodSeconds: 15
             successThreshold: 1
             failureThreshold: 3
           readinessProbe:
@@ -36,7 +36,7 @@ spec:
               scheme: HTTP
             initialDelaySeconds: 10
             timeoutSeconds: 5
-            periodSeconds: 5
+            periodSeconds: 10
             successThreshold: 1
             failureThreshold: 3
           env:
