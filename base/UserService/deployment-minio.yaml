@@ -29,12 +29,12 @@ spec:
             - name: MINIO_ROOT_USER
               valueFrom:
                 secretKeyRef:
-                  name: minio-credentials
+                  name: minio-secrets
                   key: accesskey
             - name: MINIO_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: minio-credentials
+                  name: minio-secrets
                   key: secretkey
           volumeMounts:
             - name: minio-data
