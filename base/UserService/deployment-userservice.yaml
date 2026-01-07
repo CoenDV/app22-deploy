@@ -137,12 +137,6 @@ spec:
                   name: minio-secrets
                   key: S3_ENDPOINT
 
-            - name: S3_USE_SSL
-              valueFrom:
-                secretKeyRef:
-                  name: minio-secrets
-                  key: S3_USE_SSL
-
             - name: S3_BUCKET
               valueFrom:
                 secretKeyRef:
