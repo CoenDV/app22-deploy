@@ -4,17 +4,32 @@ Kubernetes deployment configuration using Kustomize for the Group1 microservices
 
 ## Structure
 
-Each service follows this layout:
+The repository structure:
 ```
-ServiceName/
-├── base/                    # Base Kubernetes manifests
-│   ├── deployment-*.yaml    # Deployment configuration
-│   ├── service-*.yaml       # Service definition
-│   ├── route-*.yaml         # OpenShift Route
-│   └── kustomization.yaml   # Base kustomization
-└── overlays/                # Environment-specific configs
-    ├── prod/                # Production environment
-    └── test/                # Test environment
+simpleSlideshow-deploy/
+├── base/                           # Base Kubernetes manifests for all services
+│   ├── ChatService/
+│   ├── CommunityService/
+│   ├── NotificationService/
+│   ├── RecommendationService/
+│   ├── UserService/
+│   ├── VideoService/
+│   │   ├── deployment-videoservice.yaml
+│   │   ├── deployment-postgresql.yaml
+│   │   ├── deployment-ngrok.yaml       # Webhook testing in dev
+│   │   ├── service-*.yaml
+│   │   ├── route-*.yaml
+│   │   ├── secret-*.yaml
+│   │   ├── pvc-postgresql.yaml
+│   │   ├── hpa-videoservice.yaml       # Horizontal Pod Autoscaler
+│   │   └── kustomization.yaml
+│   └── kustomization.yaml              # Root base kustomization
+├── overlays/                           # Environment-specific configurations
+│   ├── prod/
+│   │   └── kustomization.yaml          # Production overlay
+│   └── test/
+│       └── kustomization.yaml          # Test overlay
+└── docs/                               # Additional documentation
 ```
 
 ## Services
@@ -35,19 +50,25 @@ ServiceName/
 
 ## Deployment
 
-### Using Kustomize
+### Using Kustomize (Manual)
 ```bash
-# Deploy to test
-kubectl apply -k ServiceName/overlays/test
+# Deploy all services to test environment
+kubectl apply -k overlays/test
 
-# Deploy to prod
-kubectl apply -k ServiceName/overlays/prod
+# Deploy all services to prod environment
+kubectl apply -k overlays/prod
+
+# Deploy specific service only (from base)
+kubectl apply -k base/VideoService
+kubectl apply -k base/RecommendationService
 ```
 
 ### Using ArgoCD
 Point ArgoCD applications to:
-- Test: `ServiceName/overlays/test`
-- Prod: `ServiceName/overlays/prod`
+- **Test environment**: `overlays/test`
+- **Prod environment**: `overlays/prod`
+
+The overlays reference all services from the base directory and apply environment-specific configurations (image tags, namespaces, etc.).
 
 ## Service Details
 
