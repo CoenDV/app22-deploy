@@ -115,6 +115,18 @@ spec:
                 secretKeyRef:
                   name: videoservice-secrets
                   key: SERVICE_TOKEN
+            - name: WATERMARK_ENABLED
+              value: "true"
+            - name: WATERMARK_IMAGE_URL
+              value: "https://ask22.app/wp-content/uploads/2023/12/22_TwentyTwo_Logo.png"
+            - name: WATERMARK_POSITION
+              value: "bottom-right"
+            - name: WATERMARK_WIDTH
+              value: "120"
+            - name: WATERMARK_HEIGHT
+              value: "120"
+            - name: WATERMARK_OPACITY
+              value: "0.7"
           resources:
             requests:
               cpu: 200m
