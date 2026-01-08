@@ -5,7 +5,7 @@ metadata:
 spec:
   to:
     kind: Service
-    name: minio
+    name: userservice-minio
     weight: 100
   port:
     targetPort: console
