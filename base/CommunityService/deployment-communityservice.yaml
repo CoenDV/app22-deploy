@@ -75,6 +75,11 @@ spec:
                 secretKeyRef:
                   name: communityservice-secrets
                   key: RECOMMENDATION_SERVICE_URL
+            - name: VIDEO_SERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: communityservice-secrets
+                  key: VIDEO_SERVICE_URL
             - name: SERVICE_TOKEN
               valueFrom:
                 secretKeyRef:
