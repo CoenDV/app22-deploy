@@ -85,6 +85,16 @@ spec:
                 secretKeyRef:
                   name: communityservice-secrets
                   key: SERVICE_TOKEN
+            - name: USER_SERVICE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: communityservice-secrets
+                  key: USER_SERVICE_URL
+            - name: USER_SERVICE_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: communityservice-secrets
+                  key: USER_SERVICE_TOKEN
           resources:
             requests:
               cpu: 200m
